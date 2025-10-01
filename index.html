@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мэрия РПМ - Официальный портал Minecraft проекта</title>
+    <title>Meria RPM - Официальный портал мэрии North</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -171,7 +171,25 @@
         
         .governor-image {
             flex: 0 0 300px;
-            background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=634&q=80') center/cover;
+            background: url('governor.jpg') center/cover;
+            position: relative;
+        }
+        
+        .governor-image-upload {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: none;
+        }
+        
+        .governor-image:hover .governor-image-upload {
+            display: block;
         }
         
         .governor-info {
@@ -337,6 +355,23 @@
             color: var(--primary);
         }
         
+        .admin-access {
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .admin-access a {
+            color: #999;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        
+        .admin-access a:hover {
+            color: var(--primary);
+        }
+        
         .copyright {
             text-align: center;
             padding-top: 1.5rem;
@@ -482,7 +517,6 @@
                     <li><a href="#" class="nav-link active" data-tab="home">Главная</a></li>
                     <li><a href="#" class="nav-link" data-tab="news">Новости</a></li>
                     <li><a href="#" class="nav-link" data-tab="ideas">Идеи и предложения</a></li>
-                    <li><a href="#" class="nav-link" data-tab="admin">Админ-панель</a></li>
                 </ul>
             </nav>
         </div>
@@ -491,8 +525,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h2>Добро пожаловать в администрацию РПМ</h2>
-            <p>Мы работаем для развития нашего региона в мире Minecraft и улучшения качества жизни граждан</p>
+            <h2>Добро пожаловать на сайт мэрии rpm</h2>
+            <p>Мы работаем для развития и улучшения качества жизни граждан</p>
             <a href="#" class="btn" data-tab="ideas">Предложить идею</a>
         </div>
     </section>
@@ -505,12 +539,17 @@
                 <h2 class="section-title">О мэрии</h2>
                 
                 <div class="governor-card">
-                    <div class="governor-image"></div>
+                    <div class="governor-image" id="governor-image">
+                        <div class="governor-image-upload" id="upload-governor-photo">
+                            <i class="fas fa-camera"></i> Заменить фото
+                        </div>
+                        <input type="file" id="governor-photo-input" accept="image/*" style="display: none;">
+                    </div>
                     <div class="governor-info">
-                        <h3>Губернатор РПМ</h3>
-                        <p>Уважаемые жители и гости нашего региона в Minecraft! Рад приветствовать вас на официальном портале администрации РПМ. Наша команда работает над созданием комфортных условий для жизни, развитием экономики и улучшением инфраструктуры в нашем виртуальном мире.</p>
-                        <p>Мы открыты для диалога и готовы рассмотреть ваши предложения по развитию региона. Вместе мы сможем сделать РПМ лучше!</p>
-                        <p>С уважением, Губернатор РПМ</p>
+                        <h3>Губернатор RPM</h3>
+                        <p>Уважаемые жители! Рад приветствовать вас на официальном сайте губернатора rpm. Наша команда работает над созданием комфортных условий для жизни, развитием экономики и улучшением инфраструктуры в нашем виртуальном мире.</p>
+                        <p>Мы открыты для диалога и готовы рассмотреть ваши предложения по развитию региона.</p>
+                        <p>С уважением, Губернатор RPM</p>
                     </div>
                 </div>
                 
@@ -673,6 +712,9 @@
             <div class="footer-column">
                 <h3>Мэрия РПМ</h3>
                 <p>Официальный портал администрации региона РПМ в Minecraft. Мы работаем для вас!</p>
+                <div class="admin-access">
+                    <a href="#" id="admin-access-link">Доступ для администратора</a>
+                </div>
             </div>
             
             <div class="footer-column">
@@ -703,6 +745,9 @@
             
             // Load news from localStorage
             loadNews();
+            
+            // Load governor photo from localStorage
+            loadGovernorPhoto();
             
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -754,6 +799,24 @@
                     document.getElementById('ideas').classList.add('active');
                     
                     // Scroll to ideas section
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+            
+            // Admin access link
+            const adminAccessLink = document.getElementById('admin-access-link');
+            if (adminAccessLink) {
+                adminAccessLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and tabs
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    tabContents.forEach(item => item.classList.remove('active'));
+                    
+                    // Add active class to admin tab
+                    document.getElementById('admin').classList.add('active');
+                    
+                    // Scroll to admin section
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             }
@@ -903,6 +966,32 @@
                 });
             }
             
+            // Governor photo upload
+            const uploadGovernorPhoto = document.getElementById('upload-governor-photo');
+            const governorPhotoInput = document.getElementById('governor-photo-input');
+            
+            if (uploadGovernorPhoto && governorPhotoInput) {
+                uploadGovernorPhoto.addEventListener('click', function() {
+                    governorPhotoInput.click();
+                });
+                
+                governorPhotoInput.addEventListener('change', function(e) {
+                    if (e.target.files && e.target.files[0]) {
+                        const reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            const governorImage = document.getElementById('governor-image');
+                            governorImage.style.backgroundImage = `url('${e.target.result}')`;
+                            
+                            // Save to localStorage
+                            localStorage.setItem('rpm-governor-photo', e.target.result);
+                        }
+                        
+                        reader.readAsDataURL(e.target.files[0]);
+                    }
+                });
+            }
+            
             // Load news from localStorage and display
             function loadNews() {
                 const newsContainer = document.getElementById('news-container');
@@ -937,6 +1026,14 @@
                             newsContainer.appendChild(createNewsCard(item));
                         });
                     }
+                }
+            }
+            
+            function loadGovernorPhoto() {
+                const savedPhoto = localStorage.getItem('rpm-governor-photo');
+                if (savedPhoto) {
+                    const governorImage = document.getElementById('governor-image');
+                    governorImage.style.backgroundImage = `url('${savedPhoto}')`;
                 }
             }
             
@@ -1033,3 +1130,4 @@
     </script>
 </body>
 </html>
+
