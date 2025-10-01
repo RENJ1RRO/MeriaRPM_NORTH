@@ -93,7 +93,7 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(255, 140, 0, 0.8), rgba(230, 126, 0, 0.9)), url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(255, 140, 0, 0.8), rgba(230, 126, 0, 0.9)), url('https://i.postimg.cc/1X8wh21t/2025-10-01-16-08-53.png');
             background-size: cover;
             background-position: center;
             color: var(--white);
@@ -183,25 +183,8 @@
         
         .governor-image {
             flex: 0 0 300px;
-            background: url('governor.jpg') center/cover;
+            background: url('https://i.postimg.cc/5NGp05sB/2025-10-01-16-09-17.png') center/cover;
             position: relative;
-        }
-        
-        .governor-image-upload {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            display: none;
-        }
-        
-        .governor-image:hover .governor-image-upload {
-            display: block;
         }
         
         .governor-info {
@@ -305,7 +288,7 @@
         
         .feature-icon {
             font-size: 2.5rem;
-            color: var(--discord);
+            color: var(--primary);
             margin-bottom: 1rem;
         }
         
@@ -400,23 +383,6 @@
             color: var(--primary);
         }
         
-        .admin-access {
-            text-align: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .admin-access a {
-            color: #999;
-            font-size: 0.8rem;
-            text-decoration: none;
-        }
-        
-        .admin-access a:hover {
-            color: var(--primary);
-        }
-        
         .copyright {
             text-align: center;
             padding-top: 1.5rem;
@@ -433,26 +399,6 @@
         .tab-content.active {
             display: block;
             animation: fadeIn 0.5s;
-        }
-        
-        /* Minecraft-specific elements */
-        .minecraft-block {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            background-color: #8B8B8B;
-            border: 2px solid #6B6B6B;
-            margin: 0 5px;
-            vertical-align: middle;
-        }
-        
-        .minecraft-coords {
-            font-family: monospace;
-            background-color: #2d2d2d;
-            color: #7ec699;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            display: inline-block;
         }
         
         @keyframes fadeIn {
@@ -532,10 +478,7 @@
                 
                 <div class="governor-card">
                     <div class="governor-image" id="governor-image">
-                        <div class="governor-image-upload" id="upload-governor-photo">
-                            <i class="fas fa-camera"></i> Заменить фото
-                        </div>
-                        <input type="file" id="governor-photo-input" accept="image/*" style="display: none;">
+                        <!-- Кнопка замены фото удалена -->
                     </div>
                     <div class="governor-info">
                         <h3>Губернатор RPM</h3>
@@ -553,7 +496,7 @@
                             <i class="fas fa-city"></i>
                         </div>
                         <h3>Развитие инфраструктуры</h3>
-                        <p>Строительство дорог, общественных зданий и улучшение городской среды</p>
+                        <p>Строительство общественных зданий и улучшение городской среды</p>
                     </div>
                     
                     <div class="feature-card">
@@ -588,11 +531,11 @@
                         <ul style="list-style-type: none; margin-bottom: 2rem;">
                             <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
                                 <i class="fas fa-check" style="color: var(--discord); position: absolute; left: 0;"></i>
-                                Общаться с другими игроками и администрацией
+                                Общаться с губернатором
                             </li>
                             <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
                                 <i class="fas fa-check" style="color: var(--discord); position: absolute; left: 0;"></i>
-                                Получать актуальные новости и обновления
+                                Получать актуальные новости по смене фед. законов и новых сооружений
                             </li>
                             <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
                                 <i class="fas fa-check" style="color: var(--discord); position: absolute; left: 0;"></i>
@@ -674,7 +617,6 @@
                             <select id="category" name="category" class="form-control" required>
                                 <option value="" disabled selected>Выберите категорию</option>
                                 <option value="infrastructure">Инфраструктура и строительство</option>
-                                <option value="transport">Транспорт и дороги</option>
                                 <option value="economy">Экономика и торговля</option>
                                 <option value="events">Мероприятия и события</option>
                                 <option value="laws">Законы и правила</option>
@@ -694,7 +636,6 @@
                 <div style="margin-top: 3rem; text-align: center;">
                     <h3 style="color: var(--primary); margin-bottom: 1rem;">Контактная информация</h3>
                     <p>Никнейм губернатора в Minecraft: <strong>RENJ1RO</strong></p>
-                    <p>Координаты мэрии: <span class="minecraft-coords">X: 120, Y: 64, Z: -350</span></p>
                     <p>Для связи используйте форму выше или наш <a href="#" class="nav-link" data-tab="discord" style="color: var(--primary);">Discord сервер</a></p>
                 </div>
             </div>
@@ -721,7 +662,6 @@
             
             <div class="footer-column">
                 <h3>Контакты в Minecraft</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Координаты мэрии: <span class="minecraft-coords">X: 120, Y: 64, Z: -350</span></p>
                 <p><i class="fas fa-user"></i> Губернатор: RENJ1RO</p>
                 <p><i class="far fa-clock"></i> Игровое время: 24/7</p>
             </div>
@@ -737,9 +677,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
             const tabContents = document.querySelectorAll('.tab-content');
-            
-            // Load governor photo from localStorage
-            loadGovernorPhoto();
             
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -794,42 +731,7 @@
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             }
-            
-            // Governor photo upload
-            const uploadGovernorPhoto = document.getElementById('upload-governor-photo');
-            const governorPhotoInput = document.getElementById('governor-photo-input');
-            
-            if (uploadGovernorPhoto && governorPhotoInput) {
-                uploadGovernorPhoto.addEventListener('click', function() {
-                    governorPhotoInput.click();
-                });
-                
-                governorPhotoInput.addEventListener('change', function(e) {
-                    if (e.target.files && e.target.files[0]) {
-                        const reader = new FileReader();
-                        
-                        reader.onload = function(e) {
-                            const governorImage = document.getElementById('governor-image');
-                            governorImage.style.backgroundImage = `url('${e.target.result}')`;
-                            
-                            // Save to localStorage
-                            localStorage.setItem('rpm-governor-photo', e.target.result);
-                        }
-                        
-                        reader.readAsDataURL(e.target.files[0]);
-                    }
-                });
-            }
-            
-            function loadGovernorPhoto() {
-                const savedPhoto = localStorage.getItem('rpm-governor-photo');
-                if (savedPhoto) {
-                    const governorImage = document.getElementById('governor-image');
-                    governorImage.style.backgroundImage = `url('${savedPhoto}')`;
-                }
-            }
         });
     </script>
 </body>
 </html>
-
