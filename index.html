@@ -556,7 +556,7 @@
                 <h2 class="section-title">Наши приоритеты</h2>
                 
                 <div class="news-grid" id="home-news">
-                    <!-- News will be loaded here from localStorage -->
+                    <!-- News will be loaded here from Google Sheets -->
                 </div>
             </div>
         </section>
@@ -567,7 +567,7 @@
                 <h2 class="section-title">Новости РПМ</h2>
                 
                 <div class="news-grid" id="news-container">
-                    <!-- News will be loaded here from localStorage -->
+                    <!-- News will be loaded here from Google Sheets -->
                 </div>
             </div>
         </section>
@@ -648,8 +648,7 @@
                         <div class="admin-actions">
                             <button id="add-news-btn" class="btn-primary">Добавить новость</button>
                             <button id="manage-news-btn" class="btn-primary">Управление новостями</button>
-                            <button id="export-news-btn" class="btn-primary">Экспорт новостей</button>
-                            <button id="import-news-btn" class="btn-primary">Импорт новостей</button>
+                            <button id="sync-news-btn" class="btn-primary">Синхронизировать с Google Sheets</button>
                         </div>
                         
                         <div id="add-news-form" class="admin-form hidden">
@@ -685,20 +684,21 @@
                             </div>
                         </div>
 
-                        <div id="import-export-section" class="hidden">
-                            <div class="admin-form">
-                                <h4 style="margin-bottom: 1rem;">Экспорт новостей</h4>
-                                <p style="margin-bottom: 1rem;">Скопируйте этот код для резервного копирования или переноса новостей:</p>
-                                <textarea id="export-data" class="form-control" rows="5" readonly></textarea>
-                                <button id="copy-export-btn" class="btn-primary" style="margin-top: 1rem;">Копировать</button>
+                        <div id="google-sheets-info" class="admin-form">
+                            <h4 style="margin-bottom: 1rem;">Инструкция по настройке Google Sheets</h4>
+                            <p>Для работы общих новостей необходимо:</p>
+                            <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                                <li>Создать Google таблицу с колонками: Заголовок, Текст, Изображение, Дата</li>
+                                <li>Опубликовать ее как веб-приложение</li>
+                                <li>Вставить ID таблицы ниже</li>
+                            </ol>
+                            
+                            <div class="form-group">
+                                <label for="sheets-id">ID Google таблицы</label>
+                                <input type="text" id="sheets-id" class="form-control" placeholder="Введите ID таблицы">
                             </div>
                             
-                            <div class="admin-form">
-                                <h4 style="margin-bottom: 1rem;">Импорт новостей</h4>
-                                <p style="margin-bottom: 1rem;">Вставьте код с новостями для импорта (существующие новости будут заменены):</p>
-                                <textarea id="import-data" class="form-control" rows="5" placeholder="Вставьте код с новостями здесь"></textarea>
-                                <button id="import-news-confirm-btn" class="btn-primary" style="margin-top: 1rem;">Импортировать новости</button>
-                            </div>
+                            <button id="save-sheets-id" class="btn-primary">Сохранить ID</button>
                         </div>
                     </div>
                 </div>
@@ -738,16 +738,22 @@
     </footer>
 
     <script>
+        // Google Sheets configuration
+        const SHEETS_ID_KEY = 'rpm-sheets-id';
+        
         // Tab Navigation
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
             const tabContents = document.querySelectorAll('.tab-content');
             
-            // Load news from localStorage
-            loadNews();
+            // Load news from Google Sheets
+            loadNewsFromSheets();
             
             // Load governor photo from localStorage
             loadGovernorPhoto();
+            
+            // Load saved Google Sheets ID
+            loadSheetsId();
             
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -843,20 +849,16 @@
             // Admin news management
             const addNewsBtn = document.getElementById('add-news-btn');
             const manageNewsBtn = document.getElementById('manage-news-btn');
-            const exportNewsBtn = document.getElementById('export-news-btn');
-            const importNewsBtn = document.getElementById('import-news-btn');
+            const syncNewsBtn = document.getElementById('sync-news-btn');
             const addNewsForm = document.getElementById('add-news-form');
             const manageNewsList = document.getElementById('manage-news-list');
-            const importExportSection = document.getElementById('import-export-section');
             const saveNewsBtn = document.getElementById('save-news-btn');
-            const copyExportBtn = document.getElementById('copy-export-btn');
-            const importNewsConfirmBtn = document.getElementById('import-news-confirm-btn');
+            const saveSheetsIdBtn = document.getElementById('save-sheets-id');
             
             if (addNewsBtn) {
                 addNewsBtn.addEventListener('click', function() {
                     addNewsForm.classList.remove('hidden');
                     manageNewsList.classList.add('hidden');
-                    importExportSection.classList.add('hidden');
                     
                     // Reset form
                     document.getElementById('news-title').value = '';
@@ -870,31 +872,14 @@
                 manageNewsBtn.addEventListener('click', function() {
                     addNewsForm.classList.add('hidden');
                     manageNewsList.classList.remove('hidden');
-                    importExportSection.classList.add('hidden');
                     displayNewsForManagement();
                 });
             }
             
-            if (exportNewsBtn) {
-                exportNewsBtn.addEventListener('click', function() {
-                    addNewsForm.classList.add('hidden');
-                    manageNewsList.classList.add('hidden');
-                    importExportSection.classList.remove('hidden');
-                    
-                    // Generate export data
-                    const news = getNewsFromStorage();
-                    document.getElementById('export-data').value = JSON.stringify(news, null, 2);
-                });
-            }
-            
-            if (importNewsBtn) {
-                importNewsBtn.addEventListener('click', function() {
-                    addNewsForm.classList.add('hidden');
-                    manageNewsList.classList.add('hidden');
-                    importExportSection.classList.remove('hidden');
-                    
-                    // Clear import field
-                    document.getElementById('import-data').value = '';
+            if (syncNewsBtn) {
+                syncNewsBtn.addEventListener('click', function() {
+                    loadNewsFromSheets();
+                    alert('Новости синхронизированы с Google Sheets!');
                 });
             }
             
@@ -912,7 +897,7 @@
                     
                     const date = dateInput ? new Date(dateInput).toLocaleDateString('ru-RU') : new Date().toLocaleDateString('ru-RU');
                     
-                    // Save news to localStorage
+                    // Save news to localStorage (temporary)
                     saveNewsToStorage(title, content, image, date);
                     
                     // Reset form
@@ -924,44 +909,19 @@
                     // Reload news on the site
                     loadNews();
                     
-                    alert('Новость успешно опубликована!');
+                    alert('Новость успешно опубликована! (только локально)');
                 });
             }
             
-            if (copyExportBtn) {
-                copyExportBtn.addEventListener('click', function() {
-                    const exportData = document.getElementById('export-data');
-                    exportData.select();
-                    document.execCommand('copy');
-                    alert('Данные скопированы в буфер обмена!');
-                });
-            }
-            
-            if (importNewsConfirmBtn) {
-                importNewsConfirmBtn.addEventListener('click', function() {
-                    const importData = document.getElementById('import-data').value;
-                    
-                    if (!importData) {
-                        alert('Пожалуйста, введите данные для импорта');
-                        return;
-                    }
-                    
-                    try {
-                        const news = JSON.parse(importData);
-                        
-                        if (!Array.isArray(news)) {
-                            throw new Error('Некорректный формат данных');
-                        }
-                        
-                        // Save imported news to localStorage
-                        localStorage.setItem('rpm-news', importData);
-                        
-                        // Reload news on the site
-                        loadNews();
-                        
-                        alert('Новости успешно импортированы!');
-                    } catch (e) {
-                        alert('Ошибка при импорте данных: ' + e.message);
+            if (saveSheetsIdBtn) {
+                saveSheetsIdBtn.addEventListener('click', function() {
+                    const sheetsId = document.getElementById('sheets-id').value;
+                    if (sheetsId) {
+                        localStorage.setItem(SHEETS_ID_KEY, sheetsId);
+                        alert('ID таблицы сохранен!');
+                        loadNewsFromSheets();
+                    } else {
+                        alert('Пожалуйста, введите ID таблицы');
                     }
                 });
             }
@@ -990,6 +950,49 @@
                         reader.readAsDataURL(e.target.files[0]);
                     }
                 });
+            }
+            
+            // Load news from Google Sheets
+            async function loadNewsFromSheets() {
+                const sheetsId = localStorage.getItem(SHEETS_ID_KEY);
+                if (!sheetsId) {
+                    console.log('Google Sheets ID not configured');
+                    loadNewsFromStorage();
+                    return;
+                }
+                
+                try {
+                    const response = await fetch(`https://docs.google.com/spreadsheets/d/${sheetsId}/gviz/tq?tqx=out:json`);
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    
+                    const text = await response.text();
+                    const json = JSON.parse(text.substring(47).slice(0, -2));
+                    
+                    const news = [];
+                    if (json.table && json.table.rows) {
+                        json.table.rows.forEach(row => {
+                            if (row.c && row.c.length >= 4) {
+                                news.push({
+                                    id: Date.now() + Math.random(),
+                                    title: row.c[0] ? row.c[0].v : '',
+                                    content: row.c[1] ? row.c[1].v : '',
+                                    image: row.c[2] ? row.c[2].v : '',
+                                    date: row.c[3] ? row.c[3].v : new Date().toLocaleDateString('ru-RU')
+                                });
+                            }
+                        });
+                    }
+                    
+                    // Save to localStorage for offline use
+                    localStorage.setItem('rpm-news', JSON.stringify(news));
+                    
+                    // Display news
+                    loadNews();
+                    
+                } catch (error) {
+                    console.error('Error loading news from Google Sheets:', error);
+                    loadNewsFromStorage();
+                }
             }
             
             // Load news from localStorage and display
@@ -1037,6 +1040,13 @@
                 }
             }
             
+            function loadSheetsId() {
+                const savedSheetsId = localStorage.getItem(SHEETS_ID_KEY);
+                if (savedSheetsId) {
+                    document.getElementById('sheets-id').value = savedSheetsId;
+                }
+            }
+            
             function createNewsCard(newsItem) {
                 const card = document.createElement('div');
                 card.className = 'news-card';
@@ -1050,7 +1060,7 @@
                         <div class="news-date"><i class="far fa-calendar-alt"></i> ${newsItem.date}</div>
                         <h3 class="news-title">${newsItem.title}</h3>
                         <p class="news-excerpt">${newsItem.content.substring(0, 150)}${newsItem.content.length > 150 ? '...' : ''}</p>
-                        <a href="#" class="read-more" onclick="showFullNews(${newsItem.id})">Читать полностью <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="read-more" onclick="showFullNews('${newsItem.id}')">Читать полностью <i class="fas fa-arrow-right"></i></a>
                     </div>
                 `;
                 
@@ -1075,7 +1085,7 @@
                         <h4>${item.title}</h4>
                         <p><strong>Дата:</strong> ${item.date}</p>
                         <p>${item.content.substring(0, 100)}${item.content.length > 100 ? '...' : ''}</p>
-                        <button class="btn-primary" onclick="deleteNews(${item.id})" style="margin-top: 0.5rem;">Удалить</button>
+                        <button class="btn-primary" onclick="deleteNews('${item.id}')" style="margin-top: 0.5rem;">Удалить</button>
                     `;
                     newsList.appendChild(newsItem);
                 });
@@ -1085,7 +1095,7 @@
             function saveNewsToStorage(title, content, image, date) {
                 const news = getNewsFromStorage();
                 const newNews = {
-                    id: Date.now(),
+                    id: Date.now().toString(),
                     title,
                     content,
                     image,
@@ -1126,8 +1136,13 @@
                     alert(`Новость: ${newsItem.title}\n\n${newsItem.content}\n\nДата: ${newsItem.date}`);
                 }
             };
+            
+            // Load news from localStorage on initial load
+            function loadNewsFromStorage() {
+                const news = getNewsFromStorage();
+                loadNews();
+            }
         });
     </script>
 </body>
 </html>
-
