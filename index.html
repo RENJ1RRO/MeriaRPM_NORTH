@@ -171,25 +171,8 @@
         
         .governor-image {
             flex: 0 0 300px;
-            background: url('governor.jpg') center/cover;
+            background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80') center/cover;
             position: relative;
-        }
-        
-        .governor-image-upload {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            display: none;
-        }
-        
-        .governor-image:hover .governor-image-upload {
-            display: block;
         }
         
         .governor-info {
@@ -390,59 +373,6 @@
             animation: fadeIn 0.5s;
         }
         
-        /* Admin Panel */
-        .admin-panel {
-            background-color: var(--light-gray);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-        
-        .admin-login {
-            max-width: 400px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .admin-actions {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .admin-form {
-            background-color: var(--white);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 1.5rem;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        .message {
-            padding: 1rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        
         /* Minecraft-specific elements */
         .minecraft-block {
             display: inline-block;
@@ -494,10 +424,6 @@
             .ideas-form {
                 padding: 1.5rem;
             }
-            
-            .admin-actions {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -539,12 +465,7 @@
                 <h2 class="section-title">О мэрии</h2>
                 
                 <div class="governor-card">
-                    <div class="governor-image" id="governor-image">
-                        <div class="governor-image-upload" id="upload-governor-photo">
-                            <i class="fas fa-camera"></i> Заменить фото
-                        </div>
-                        <input type="file" id="governor-photo-input" accept="image/*" style="display: none;">
-                    </div>
+                    <div class="governor-image"></div>
                     <div class="governor-info">
                         <h3>Губернатор RPM</h3>
                         <p>Уважаемые жители! Рад приветствовать вас на официальном сайте губернатора rpm. Наша команда работает над созданием комфортных условий для жизни, развитием экономики и улучшением инфраструктуры в нашем виртуальном мире.</p>
@@ -692,9 +613,6 @@
             // Load news from embedded JSON
             loadNews();
             
-            // Load governor photo from localStorage
-            loadGovernorPhoto();
-            
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -758,32 +676,6 @@
                 });
             }
             
-            // Governor photo upload
-            const uploadGovernorPhoto = document.getElementById('upload-governor-photo');
-            const governorPhotoInput = document.getElementById('governor-photo-input');
-            
-            if (uploadGovernorPhoto && governorPhotoInput) {
-                uploadGovernorPhoto.addEventListener('click', function() {
-                    governorPhotoInput.click();
-                });
-                
-                governorPhotoInput.addEventListener('change', function(e) {
-                    if (e.target.files && e.target.files[0]) {
-                        const reader = new FileReader();
-                        
-                        reader.onload = function(e) {
-                            const governorImage = document.getElementById('governor-image');
-                            governorImage.style.backgroundImage = `url('${e.target.result}')`;
-                            
-                            // Save to localStorage
-                            localStorage.setItem('rpm-governor-photo', e.target.result);
-                        }
-                        
-                        reader.readAsDataURL(e.target.files[0]);
-                    }
-                });
-            }
-            
             // Load news from embedded JSON and display
             function loadNews() {
                 const newsContainer = document.getElementById('news-container');
@@ -819,14 +711,6 @@
                             newsContainer.appendChild(createNewsCard(item));
                         });
                     }
-                }
-            }
-            
-            function loadGovernorPhoto() {
-                const savedPhoto = localStorage.getItem('rpm-governor-photo');
-                if (savedPhoto) {
-                    const governorImage = document.getElementById('governor-image');
-                    governorImage.style.backgroundImage = `url('${savedPhoto}')`;
                 }
             }
             
@@ -1017,5 +901,3 @@
     </script>
 </body>
 </html>
-
-
