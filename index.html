@@ -16,6 +16,7 @@
             --text: #444444;
             --discord: #5865F2;
             --discord-dark: #4752C4;
+            --event: #4CAF50;
         }
         
         * {
@@ -145,6 +146,16 @@
         .btn-discord:hover {
             background-color: var(--discord-dark);
             border-color: var(--discord-dark);
+        }
+        
+        .btn-event {
+            background-color: var(--event);
+            color: var(--white);
+        }
+        
+        .btn-event:hover {
+            background-color: #3d8b40;
+            border-color: #3d8b40;
         }
         
         /* Main Content */
@@ -292,6 +303,76 @@
             margin-bottom: 1rem;
         }
         
+        /* Event Section */
+        .event-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://i.postimg.cc/rpbv9hkH/2025-10-14-00-15-34.png');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+        }
+        
+        .event-hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .event-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .event-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .event-card {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .event-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .event-agenda {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+        }
+        
+        .agenda-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .agenda-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .agenda-time {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
         /* Ideas Section */
         .ideas-form {
             background-color: var(--light-gray);
@@ -436,6 +517,10 @@
             .discord-container {
                 flex-direction: column;
             }
+            
+            .event-hero h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -453,6 +538,7 @@
             <nav>
                 <ul>
                     <li><a href="#" class="nav-link active" data-tab="home">Главная</a></li>
+                    <li><a href="#" class="nav-link" data-tab="events">Мероприятия</a></li>
                     <li><a href="#" class="nav-link" data-tab="discord">Дискорд</a></li>
                     <li><a href="#" class="nav-link" data-tab="ideas">Идеи и предложения</a></li>
                 </ul>
@@ -514,6 +600,72 @@
                         <h3>Экономическое развитие</h3>
                         <p>Поддержка торговли, бизнеса и создание рабочих мест в игре</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Tab -->
+        <section id="events" class="tab-content">
+            <div class="container">
+                <h2 class="section-title">Мероприятия</h2>
+                
+                <div class="event-hero">
+                    <h2>Пресс-конференция у мэрии</h2>
+                    <p>Представление нового главы отдела СПГ и обсуждение изменений в федеральных законах</p>
+                    <a href="#" class="btn btn-event">Участвовать в мероприятии</a>
+                </div>
+                
+                <div class="event-details">
+                    <div class="event-card">
+                        <h3><i class="fas fa-calendar-alt"></i> Дата и время</h3>
+                        <p><strong>Дата:</strong> 15 октября 2025 года</p>
+                        <p><strong>Время:</strong> 19:00 по МСК</p>
+                        <p><strong>Место:</strong> Эстрада у здания мэрии</p>
+                    </div>
+                    
+                    <div class="event-card">
+                        <h3><i class="fas fa-users"></i> Участники</h3>
+                        <p><strong>Губернатор:</strong> RENJ1RO</p>
+                        <p><strong>Новый глава СПГ:</strong> Будет представлен на мероприятии</p>
+                        <p><strong>Приглашены:</strong> Все граждане RPM</p>
+                    </div>
+                    
+                    <div class="event-card">
+                        <h3><i class="fas fa-info-circle"></i> О мероприятии</h3>
+                        <p>Важное событие для всех жителей! На пресс-конференции будут обсуждаться ключевые изменения в законодательстве и представлен новый руководитель Службы Поддержки Граждан.</p>
+                    </div>
+                </div>
+                
+                <div class="event-agenda">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Программа мероприятия</h3>
+                    
+                    <div class="agenda-item">
+                        <div class="agenda-time">19:00 - 19:10</div>
+                        <p><strong>Открытие пресс-конференции</strong> - Приветственная речь губернатора</p>
+                    </div>
+                    
+                    <div class="agenda-item">
+                        <div class="agenda-time">19:10 - 19:25</div>
+                        <p><strong>Представление нового главы отдела СПГ</strong> - Знакомство с новым руководителем и его речью о планах развития службы</p>
+                    </div>
+                    
+                    <div class="agenda-item">
+                        <div class="agenda-time">19:25 - 20:00</div>
+                        <p><strong>Вопросы и ответы</strong> - Обсуждение изменений и дополнений в федеральных законах. Ответы на вопросы граждан.</p>
+                    </div>
+                    
+                    <div class="agenda-item">
+                        <div class="agenda-time">20:00 - 20:15</div>
+                        <p><strong>Закрытие мероприятия</strong> - Подведение итогов и объявление следующих шагов</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Как принять участие?</h3>
+                    <p>Присоединяйтесь к нашему Discord серверу для получения дополнительной информации и участия в мероприятии.</p>
+                    <a href="#" class="btn btn-discord nav-link" data-tab="discord" style="margin-top: 1rem;">
+                        <i class="fab fa-discord"></i> Перейти в Discord
+                    </a>
                 </div>
             </div>
         </section>
@@ -651,6 +803,7 @@
             <div class="footer-column">
                 <h3>Полезные ссылки</h3>
                 <a href="#" class="nav-link" data-tab="home">Главная</a>
+                <a href="#" class="nav-link" data-tab="events">Мероприятия</a>
                 <a href="#" class="nav-link" data-tab="discord">Дискорд</a>
                 <a href="#" class="nav-link" data-tab="ideas">Идеи и предложения</a>
             </div>
@@ -723,6 +876,25 @@
                     document.getElementById('ideas').classList.add('active');
                     
                     // Scroll to ideas section
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+            
+            // Event button to Discord tab
+            const eventButton = document.querySelector('.btn-event');
+            if (eventButton) {
+                eventButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and tabs
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    tabContents.forEach(item => item.classList.remove('active'));
+                    
+                    // Add active class to Discord link
+                    document.querySelector('[data-tab="discord"]').classList.add('active');
+                    document.getElementById('discord').classList.add('active');
+                    
+                    // Scroll to top
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             }
