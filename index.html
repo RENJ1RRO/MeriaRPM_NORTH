@@ -167,9 +167,19 @@
         
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             color: var(--primary);
             position: relative;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .section-title:after {
@@ -522,6 +532,15 @@
                 font-size: 2rem;
             }
         }
+        
+        .attention-text {
+            background-color: #fff8e1;
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 5px 5px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -607,7 +626,8 @@
         <!-- Events Tab -->
         <section id="events" class="tab-content">
             <div class="container">
-                <h2 class="section-title">Мероприятия</h2>
+                <h2 class="section-title">Ближайшие мероприятия</h2>
+                <p class="section-subtitle">Не пропустите важные события в жизни нашего штата! Участвуйте в мероприятиях и будьте в курсе всех новостей и изменений.</p>
                 
                 <div class="event-hero">
                     <h2>Пресс-конференция у мэрии</h2>
@@ -619,7 +639,7 @@
                     <div class="event-card">
                         <h3><i class="fas fa-calendar-alt"></i> Дата и время</h3>
                         <p><strong>Дата:</strong> 15 октября 2025 года</p>
-                        <p><strong>Время:</strong> 19:00 по МСК</p>
+                        <p><strong>Время:</strong> 18:00 по МСК</p>
                         <p><strong>Место:</strong> Эстрада у здания мэрии</p>
                     </div>
                     
@@ -640,22 +660,18 @@
                     <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Программа мероприятия</h3>
                     
                     <div class="agenda-item">
-                        <div class="agenda-time">19:00 - 19:10</div>
                         <p><strong>Открытие пресс-конференции</strong> - Приветственная речь губернатора</p>
                     </div>
                     
                     <div class="agenda-item">
-                        <div class="agenda-time">19:10 - 19:25</div>
-                        <p><strong>Представление нового главы отдела СПГ</strong> - Знакомство с новым руководителем и его речью о планах развития службы</p>
+                        <p><strong>Представление нового главы отдела СПГ</strong> - Знакомство с новым руководителем и его речью о планах развитиях</p>
                     </div>
                     
                     <div class="agenda-item">
-                        <div class="agenda-time">19:25 - 20:00</div>
                         <p><strong>Вопросы и ответы</strong> - Обсуждение изменений и дополнений в федеральных законах. Ответы на вопросы граждан.</p>
                     </div>
                     
                     <div class="agenda-item">
-                        <div class="agenda-time">20:00 - 20:15</div>
                         <p><strong>Закрытие мероприятия</strong> - Подведение итогов и объявление следующих шагов</p>
                     </div>
                 </div>
@@ -902,5 +918,4 @@
     </script>
 </body>
 </html>
-
 
