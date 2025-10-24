@@ -12,10 +12,10 @@
             --primary-light: #A52A2A;
             --accent-dark: #2F4F4F;
             --accent-light: #708090;
-            --white: #F8F8F8;
-            --light-gray: #1A1A1A;
-            --dark-gray: #0A0A0A;
             --text: #E8E8E8;
+            --bg-dark: #0A0A0A;
+            --bg-darker: #050505;
+            --bg-card: #111111;
             --discord: #5865F2;
             --discord-dark: #4752C4;
             --event: #8B0000;
@@ -29,21 +29,21 @@
         }
         
         body {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            background: var(--bg-darker);
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(139, 0, 0, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(47, 79, 79, 0.1) 0%, transparent 20%);
+                radial-gradient(circle at 10% 20%, rgba(139, 0, 0, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(47, 79, 79, 0.05) 0%, transparent 20%);
         }
         
         /* Header Styles */
         header {
-            background: linear-gradient(135deg, var(--dark-gray), var(--accent-dark));
-            color: var(--white);
+            background: var(--bg-dark);
+            color: var(--text);
             padding: 1rem 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -111,10 +111,12 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(47, 79, 79, 0.7)), url('https://i.postimg.cc/fT26J6tJ/2025-10-24-21-54-46.png');
+            background: 
+                linear-gradient(rgba(5, 5, 5, 0.9), rgba(10, 10, 10, 0.9)),
+                url('https://i.postimg.cc/fT26J6tJ/2025-10-24-21-54-46.png');
             background-size: cover;
             background-position: center;
-            color: var(--white);
+            color: var(--text);
             padding: 5rem 2rem;
             text-align: center;
             position: relative;
@@ -160,7 +162,7 @@
         .btn {
             display: inline-block;
             background: linear-gradient(45deg, var(--primary-dark), var(--primary));
-            color: var(--white);
+            color: var(--text);
             padding: 0.8rem 1.8rem;
             border-radius: 2px;
             text-decoration: none;
@@ -209,6 +211,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 3rem 2rem;
+            background: var(--bg-dark);
         }
         
         .section-title {
@@ -246,10 +249,10 @@
         /* Governor Section */
         .governor-card {
             display: flex;
-            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            background: var(--bg-card);
             border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
             margin-bottom: 3rem;
             border: 1px solid var(--accent-dark);
             position: relative;
@@ -267,9 +270,11 @@
         
         .governor-image {
             flex: 0 0 300px;
-            background: url('https://i.postimg.cc/5NGp05sB/2025-10-01-16-09-17.png') center/cover;
+            background: 
+                linear-gradient(rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.7)),
+                url('https://i.postimg.cc/5NGp05sB/2025-10-01-16-09-17.png') center/cover;
             position: relative;
-            filter: grayscale(30%) contrast(110%);
+            filter: grayscale(30%) contrast(110%) brightness(0.8);
         }
         
         .governor-image::after {
@@ -279,7 +284,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(90deg, rgba(10,10,10,0.3), transparent);
+            background: linear-gradient(90deg, rgba(10,10,10,0.5), transparent);
         }
         
         .governor-info {
@@ -318,10 +323,10 @@
             flex: 1;
             min-width: 300px;
             max-width: 400px;
-            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            background: var(--bg-card);
             border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
             border: 1px solid var(--accent-dark);
             position: relative;
         }
@@ -338,7 +343,7 @@
         
         .discord-header {
             background: linear-gradient(135deg, var(--discord-dark), var(--accent-dark));
-            color: white;
+            color: var(--text);
             padding: 1.5rem;
             text-align: center;
         }
@@ -351,6 +356,7 @@
         .discord-content {
             padding: 2rem;
             text-align: center;
+            background: var(--bg-card);
         }
         
         .discord-stats {
@@ -382,11 +388,11 @@
         }
         
         .feature-card {
-            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            background: var(--bg-card);
             padding: 2rem;
             border-radius: 5px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
             transition: all 0.3s;
             border: 1px solid var(--accent-dark);
             position: relative;
@@ -415,15 +421,17 @@
         
         /* Event Section */
         .event-hero {
-            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(47, 79, 79, 0.6)), url('https://i.postimg.cc/fT26J6tJ/2025-10-24-21-54-46.png');
+            background: 
+                linear-gradient(rgba(5, 5, 5, 0.9), rgba(10, 10, 10, 0.9)),
+                url('https://i.postimg.cc/fT26J6tJ/2025-10-24-21-54-46.png');
             background-size: cover;
             background-position: center;
-            color: var(--white);
+            color: var(--text);
             padding: 4rem 2rem;
             text-align: center;
             border-radius: 5px;
             margin-bottom: 3rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.9);
             border: 1px solid var(--primary);
             position: relative;
         }
@@ -465,10 +473,10 @@
         }
         
         .event-card {
-            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            background: var(--bg-card);
             padding: 2rem;
             border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
             border: 1px solid var(--accent-dark);
             position: relative;
         }
@@ -492,10 +500,10 @@
         }
         
         .event-agenda {
-            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            background: var(--bg-card);
             padding: 2rem;
             border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
             margin-bottom: 3rem;
             border: 1px solid var(--accent-dark);
             position: relative;
@@ -543,10 +551,10 @@
         
         /* Ideas Section */
         .ideas-form {
-            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            background: var(--bg-card);
             padding: 2.5rem;
             border-radius: 5px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
             max-width: 800px;
             margin: 0 auto;
             border: 1px solid var(--accent-dark);
@@ -581,7 +589,7 @@
             border-radius: 3px;
             font-size: 1rem;
             transition: all 0.3s;
-            background: rgba(10, 10, 10, 0.8);
+            background: var(--bg-dark);
             color: var(--text);
         }
         
@@ -598,7 +606,7 @@
         
         .btn-primary {
             background: linear-gradient(45deg, var(--primary-dark), var(--primary));
-            color: var(--white);
+            color: var(--text);
             border: none;
             padding: 0.8rem 2rem;
             border-radius: 3px;
@@ -616,8 +624,8 @@
         
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--dark-gray), #0a0a0a);
-            color: var(--white);
+            background: var(--bg-darker);
+            color: var(--text);
             padding: 3rem 0 1.5rem;
             border-top: 1px solid var(--primary);
             position: relative;
