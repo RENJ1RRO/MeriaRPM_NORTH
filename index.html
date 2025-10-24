@@ -3,49 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meria RPM - Хэллоуинский портал мэрии</title>
+    <title>Meria RPM - Официальный портал мэрии</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #FF7518;
-            --primary-dark: #E65C00;
-            --primary-light: #FF8C42;
-            --halloween-purple: #8B008B;
-            --halloween-green: #228B22;
-            --halloween-orange: #FF8C00;
-            --white: #FFFFFF;
+            --primary: #8B0000;
+            --primary-dark: #660000;
+            --primary-light: #A52A2A;
+            --accent-dark: #2F4F4F;
+            --accent-light: #708090;
+            --white: #F8F8F8;
             --light-gray: #1A1A1A;
             --dark-gray: #0A0A0A;
-            --text: #E0E0E0;
+            --text: #E8E8E8;
             --discord: #5865F2;
             --discord-dark: #4752C4;
-            --event: #8B008B;
+            --event: #8B0000;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Cinzel', 'Times New Roman', serif;
         }
         
         body {
-            background: linear-gradient(135deg, #1a0f0f 0%, #2d1a1a 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(139, 0, 0, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(47, 79, 79, 0.1) 0%, transparent 20%);
         }
         
         /* Header Styles */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--halloween-purple));
+            background: linear-gradient(135deg, var(--dark-gray), var(--accent-dark));
             color: var(--white);
             padding: 1rem 0;
-            box-shadow: 0 4px 20px rgba(255, 117, 24, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 2px solid var(--halloween-green);
+            border-bottom: 1px solid var(--primary);
         }
         
         .header-container {
@@ -65,20 +67,22 @@
         
         .logo i {
             font-size: 2.5rem;
-            color: var(--halloween-green);
-            text-shadow: 0 0 10px rgba(34, 139, 34, 0.5);
+            color: var(--primary);
+            text-shadow: 0 0 5px rgba(139, 0, 0, 0.5);
         }
         
         .logo-text h1 {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--halloween-green);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: var(--primary);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            letter-spacing: 1px;
         }
         
         .logo-text p {
             font-size: 0.9rem;
-            color: var(--primary-light);
+            color: var(--accent-light);
+            font-style: italic;
         }
         
         nav ul {
@@ -88,39 +92,26 @@
         }
         
         nav a {
-            color: var(--white);
+            color: var(--text);
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
             padding: 0.5rem 1rem;
-            border-radius: 4px;
+            border-radius: 2px;
             transition: all 0.3s;
             position: relative;
+            border: 1px solid transparent;
         }
         
         nav a:hover, nav a.active {
-            background-color: rgba(139, 0, 139, 0.3);
-            transform: translateY(-2px);
-        }
-        
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--halloween-green);
-            transition: width 0.3s;
-        }
-        
-        nav a:hover::after, nav a.active::after {
-            width: 100%;
+            background-color: rgba(139, 0, 0, 0.2);
+            border-color: var(--primary);
+            color: var(--primary);
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(26, 15, 15, 0.8), rgba(139, 0, 139, 0.7)), url('https://i.postimg.cc/fT26J6tJ/2025-10-24-21-54-46.png');
+            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(47, 79, 79, 0.7)), url('https://i.postimg.cc/fT26J6tJ/2025-10-24-21-54-46.png');
             background-size: cover;
             background-position: center;
             color: var(--white);
@@ -131,28 +122,16 @@
         }
         
         .hero::before {
-            content: '🎃';
+            content: '';
             position: absolute;
-            top: 20px;
-            left: 5%;
-            font-size: 3rem;
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .hero::after {
-            content: '👻';
-            position: absolute;
-            bottom: 20px;
-            right: 5%;
-            font-size: 3rem;
-            opacity: 0.3;
-            animation: float 8s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(47, 79, 79, 0.1) 0%, transparent 50%);
+            z-index: 1;
         }
         
         .hero-content {
@@ -163,65 +142,66 @@
         }
         
         .hero h2 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-            color: var(--halloween-green);
-            background: linear-gradient(45deg, var(--halloween-green), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+            color: var(--primary);
+            letter-spacing: 2px;
+            font-weight: 700;
         }
         
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            font-style: italic;
         }
         
         .btn {
             display: inline-block;
-            background: linear-gradient(45deg, var(--primary), var(--halloween-purple));
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
             color: var(--white);
             padding: 0.8rem 1.8rem;
-            border-radius: 50px;
+            border-radius: 2px;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s;
-            border: 2px solid transparent;
-            box-shadow: 0 4px 15px rgba(255, 117, 24, 0.4);
+            border: 1px solid var(--primary);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
+            letter-spacing: 1px;
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 117, 24, 0.6);
-            border-color: var(--halloween-green);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(139, 0, 0, 0.4);
+            background: linear-gradient(45deg, var(--primary), var(--primary-light));
         }
         
         .btn-discord {
-            background: linear-gradient(45deg, var(--discord), var(--halloween-purple));
+            background: linear-gradient(45deg, var(--accent-dark), var(--discord));
+            border-color: var(--accent-light);
         }
         
         .btn-discord:hover {
-            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.6);
+            box-shadow: 0 6px 15px rgba(47, 79, 79, 0.4);
         }
         
         .btn-event {
-            background: linear-gradient(45deg, var(--halloween-purple), var(--halloween-green));
-            animation: pulse 2s infinite;
+            background: linear-gradient(45deg, var(--primary-dark), var(--accent-dark));
+            animation: glow 3s infinite;
+            border-color: var(--primary);
         }
         
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(139, 0, 0, 0.5); }
+            50% { box-shadow: 0 0 15px rgba(139, 0, 0, 0.7); }
         }
         
         .btn-event:hover {
             animation: none;
-            transform: translateY(-3px);
         }
         
         /* Main Content */
@@ -234,47 +214,44 @@
         .section-title {
             text-align: center;
             margin-bottom: 1rem;
-            color: var(--halloween-green);
+            color: var(--primary);
             position: relative;
-            font-size: 2.2rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .section-title::before {
-            content: '🕷️';
-            position: absolute;
-            left: -40px;
-            top: 50%;
-            transform: translateY(-50%);
+            font-size: 2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            letter-spacing: 1px;
+            padding-bottom: 0.5rem;
         }
         
         .section-title::after {
-            content: '🕸️';
-            position: absolute;
-            right: -40px;
-            top: 50%;
-            transform: translateY(-50%);
+            content: '';
+            display: block;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            margin: 10px auto;
+            border-radius: 1px;
         }
         
         .section-subtitle {
             text-align: center;
             margin-bottom: 3rem;
-            color: var(--primary-light);
-            font-size: 1.2rem;
+            color: var(--accent-light);
+            font-size: 1.1rem;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            font-style: italic;
         }
         
         /* Governor Section */
         .governor-card {
             display: flex;
-            background: linear-gradient(135deg, #2d1a1a, #1a0f0f);
-            border-radius: 15px;
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
             margin-bottom: 3rem;
-            border: 1px solid var(--primary);
+            border: 1px solid var(--accent-dark);
             position: relative;
         }
         
@@ -284,14 +261,25 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--halloween-purple), var(--halloween-green));
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-dark));
         }
         
         .governor-image {
             flex: 0 0 300px;
             background: url('https://i.postimg.cc/5NGp05sB/2025-10-01-16-09-17.png') center/cover;
             position: relative;
+            filter: grayscale(30%) contrast(110%);
+        }
+        
+        .governor-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(10,10,10,0.3), transparent);
         }
         
         .governor-info {
@@ -301,7 +289,7 @@
         
         .governor-info h3 {
             font-size: 1.8rem;
-            color: var(--halloween-green);
+            color: var(--primary);
             margin-bottom: 1rem;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
@@ -330,11 +318,11 @@
             flex: 1;
             min-width: 300px;
             max-width: 400px;
-            background: linear-gradient(135deg, #2d1a1a, #1a0f0f);
-            border-radius: 15px;
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--discord);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--accent-dark);
             position: relative;
         }
         
@@ -344,12 +332,12 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--discord), var(--halloween-purple));
+            height: 3px;
+            background: linear-gradient(90deg, var(--discord), var(--accent-dark));
         }
         
         .discord-header {
-            background: linear-gradient(135deg, var(--discord), var(--halloween-purple));
+            background: linear-gradient(135deg, var(--discord-dark), var(--accent-dark));
             color: white;
             padding: 1.5rem;
             text-align: center;
@@ -358,7 +346,6 @@
         .discord-header i {
             font-size: 3rem;
             margin-bottom: 1rem;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
         
         .discord-content {
@@ -379,8 +366,7 @@
         .stat-number {
             font-size: 1.8rem;
             font-weight: bold;
-            color: var(--halloween-green);
-            text-shadow: 0 0 5px rgba(34, 139, 34, 0.5);
+            color: var(--primary);
         }
         
         .stat-label {
@@ -396,15 +382,14 @@
         }
         
         .feature-card {
-            background: linear-gradient(135deg, #2d1a1a, #1a0f0f);
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
             padding: 2rem;
-            border-radius: 15px;
+            border-radius: 5px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             transition: all 0.3s;
-            border: 1px solid var(--primary);
+            border: 1px solid var(--accent-dark);
             position: relative;
-            overflow: hidden;
         }
         
         .feature-card::before {
@@ -413,36 +398,34 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--halloween-purple));
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
         }
         
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(255, 117, 24, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
         }
         
         .feature-icon {
             font-size: 2.5rem;
-            color: var(--halloween-green);
+            color: var(--primary);
             margin-bottom: 1rem;
-            text-shadow: 0 0 10px rgba(34, 139, 34, 0.5);
         }
         
         /* Event Section */
         .event-hero {
-            background: linear-gradient(rgba(26, 15, 15, 0.8), rgba(139, 0, 139, 0.6)), url('https://i.postimg.cc/fT26J6tJ/2025-10-24-21-54-46.png');
+            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(47, 79, 79, 0.6)), url('https://i.postimg.cc/fT26J6tJ/2025-10-24-21-54-46.png');
             background-size: cover;
             background-position: center;
             color: var(--white);
             padding: 4rem 2rem;
             text-align: center;
-            border-radius: 15px;
+            border-radius: 5px;
             margin-bottom: 3rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            border: 2px solid var(--halloween-purple);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--primary);
             position: relative;
-            overflow: hidden;
         }
         
         .event-hero::before {
@@ -452,21 +435,26 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="web" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0L0 10" fill="none" stroke="%238B008B" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23web)"/></svg>');
-            opacity: 0.1;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(139, 0, 0, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(47, 79, 79, 0.1) 0%, transparent 40%);
         }
         
         .event-hero h2 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: var(--halloween-green);
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+            color: var(--primary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            position: relative;
+            z-index: 2;
         }
         
         .event-hero p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            position: relative;
+            z-index: 2;
         }
         
         .event-details {
@@ -477,17 +465,12 @@
         }
         
         .event-card {
-            background: linear-gradient(135deg, #2d1a1a, #1a0f0f);
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
             padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--primary);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--accent-dark);
             position: relative;
-            transition: transform 0.3s;
-        }
-        
-        .event-card:hover {
-            transform: translateY(-5px);
         }
         
         .event-card::before {
@@ -496,26 +479,25 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--halloween-purple));
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
         }
         
         .event-card h3 {
-            color: var(--halloween-green);
+            color: var(--primary);
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 10px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
         
         .event-agenda {
-            background: linear-gradient(135deg, #2d1a1a, #1a0f0f);
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
             padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             margin-bottom: 3rem;
-            border: 1px solid var(--halloween-purple);
+            border: 1px solid var(--accent-dark);
             position: relative;
         }
         
@@ -525,23 +507,14 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--halloween-purple), var(--halloween-green));
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-dark));
         }
         
         .agenda-item {
             margin-bottom: 1.5rem;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(139, 0, 139, 0.3);
-            position: relative;
-            padding-left: 2rem;
-        }
-        
-        .agenda-item::before {
-            content: '👻';
-            position: absolute;
-            left: 0;
-            top: 0;
+            border-bottom: 1px solid rgba(47, 79, 79, 0.3);
         }
         
         .agenda-item:last-child {
@@ -562,20 +535,21 @@
         }
         
         .activities-list li::before {
-            content: '🎃';
+            content: '■';
             position: absolute;
             left: 0;
+            color: var(--primary);
         }
         
         /* Ideas Section */
         .ideas-form {
-            background: linear-gradient(135deg, #2d1a1a, #1a0f0f);
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
             padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
             max-width: 800px;
             margin: 0 auto;
-            border: 1px solid var(--primary);
+            border: 1px solid var(--accent-dark);
             position: relative;
         }
         
@@ -585,8 +559,8 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--halloween-purple));
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-dark));
         }
         
         .form-group {
@@ -597,24 +571,24 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
-            color: var(--halloween-green);
+            color: var(--primary);
         }
         
         .form-control {
             width: 100%;
             padding: 0.8rem 1rem;
-            border: 1px solid rgba(255, 117, 24, 0.3);
-            border-radius: 8px;
+            border: 1px solid rgba(47, 79, 79, 0.5);
+            border-radius: 3px;
             font-size: 1rem;
             transition: all 0.3s;
-            background: rgba(26, 15, 15, 0.8);
+            background: rgba(10, 10, 10, 0.8);
             color: var(--text);
         }
         
         .form-control:focus {
             outline: none;
-            border-color: var(--halloween-purple);
-            box-shadow: 0 0 10px rgba(139, 0, 139, 0.3);
+            border-color: var(--primary);
+            box-shadow: 0 0 5px rgba(139, 0, 0, 0.3);
         }
         
         textarea.form-control {
@@ -623,29 +597,29 @@
         }
         
         .btn-primary {
-            background: linear-gradient(45deg, var(--primary), var(--halloween-purple));
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
             color: var(--white);
             border: none;
             padding: 0.8rem 2rem;
-            border-radius: 8px;
+            border-radius: 3px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 117, 24, 0.4);
+            border: 1px solid var(--primary);
         }
         
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 117, 24, 0.6);
+            background: linear-gradient(45deg, var(--primary), var(--primary-light));
+            transform: translateY(-2px);
         }
         
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--dark-gray), #1a0f0f);
+            background: linear-gradient(135deg, var(--dark-gray), #0a0a0a);
             color: var(--white);
             padding: 3rem 0 1.5rem;
-            border-top: 2px solid var(--halloween-purple);
+            border-top: 1px solid var(--primary);
             position: relative;
         }
         
@@ -655,8 +629,8 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--halloween-purple), var(--halloween-green));
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-dark), var(--primary));
         }
         
         .footer-content {
@@ -670,14 +644,13 @@
         }
         
         .footer-column h3 {
-            color: var(--halloween-green);
+            color: var(--primary);
             margin-bottom: 1.5rem;
             font-size: 1.3rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
         
         .footer-column p, .footer-column a {
-            color: #ccc;
+            color: #aaa;
             margin-bottom: 0.8rem;
             display: block;
             text-decoration: none;
@@ -691,8 +664,8 @@
         .copyright {
             text-align: center;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(139, 0, 139, 0.3);
-            color: #999;
+            border-top: 1px solid rgba(47, 79, 79, 0.3);
+            color: #777;
             font-size: 0.9rem;
         }
         
@@ -707,8 +680,8 @@
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         /* Responsive Design */
@@ -741,35 +714,27 @@
             .discord-container {
                 flex-direction: column;
             }
-            
-            .section-title::before,
-            .section-title::after {
-                display: none;
-            }
         }
         
-        .halloween-decoration {
+        .decoration {
             text-align: center;
             margin: 2rem 0;
-            font-size: 2rem;
-            animation: spooky 3s infinite;
-        }
-        
-        @keyframes spooky {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            font-size: 1.5rem;
+            color: var(--primary);
+            opacity: 0.7;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="header-container">
             <div class="logo">
-                <i class="fas fa-ghost"></i>
+                <i class="fas fa-landmark"></i>
                 <div class="logo-text">
                     <h1>Мэрия РПМ</h1>
-                    <p>Хэллоуинский портал мэрии RPM</p>
+                    <p>Официальный портал мэрии RPM</p>
                 </div>
             </div>
             <nav>
@@ -786,10 +751,10 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="halloween-decoration">🎃 👻 🕷️ 🕸️ 🦇</div>
-            <h2>Добро пожаловать в Хэллоуинскую мэрию RPM</h2>
-            <p>Готовьтесь к самому жуткому и веселому празднику года!</p>
-            <a href="#" class="btn btn-event" data-tab="events">Узнать о мероприятиях</a>
+            <div class="decoration">■ ▲ ◆ ■ ▲ ◆</div>
+            <h2>ПОРТАЛ МЭРИИ RPM</h2>
+            <p>Там, где тени рассказывают истории, а решения творят судьбы</p>
+            <a href="#" class="btn btn-event" data-tab="events">Предстоящие события</a>
         </div>
     </section>
 
@@ -798,7 +763,7 @@
         <!-- Home Tab -->
         <section id="home" class="tab-content active">
             <div class="container">
-                <h2 class="section-title">О Хэллоуинской мэрии</h2>
+                <h2 class="section-title">О МЭРИИ</h2>
                 
                 <div class="governor-card">
                     <div class="governor-image" id="governor-image">
@@ -806,38 +771,38 @@
                     </div>
                     <div class="governor-info">
                         <h3>Губернатор RPM</h3>
-                        <p>Дорогие жители! Приветствую вас в самый жуткий и веселый период года - Хэллоуин! Наша мэрия превратилась в настоящий дом с привидениями, и мы подготовили для вас множество страшных сюрпризов.</p>
-                        <p>В этом году мы организовали грандиозный фестиваль "HALLOWEEN NIGHT FEST" с конкурсами, призами и, конечно же, морем конфет!</p>
-                        <p>Присоединяйтесь к веселью и помните: в эту ночь возможно всё!</p>
-                        <p>С жутким приветом, Губернатор RPM</p>
+                        <p>Граждане, в эти осенние сумерки, когда граница между мирами становится тоньше, я обращаюсь к вам. Наш город стоит на пороге событий, которые определят его будущее.</p>
+                        <p>В это время года традиции требуют нашего внимания. Мы подготовили мероприятие, которое позволит каждому прикоснуться к тайне и испытать нечто особенное.</p>
+                        <p>Будьте бдительны, но не бойтесь. Иногда самые темные тени скрывают самые яркие возможности.</p>
+                        <p>С уважением, Губернатор RPM</p>
                     </div>
                 </div>
                 
-                <h2 class="section-title">Хэллоуинские активности</h2>
+                <h2 class="section-title">НАШИ ПРИОРИТЕТЫ</h2>
                 
                 <div class="discord-features">
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-ghost"></i>
+                            <i class="fas fa-monument"></i>
                         </div>
-                        <h3>Конкурс костюмов</h3>
-                        <p>Приходите в самом страшном наряде и выигрывайте призы!</p>
+                        <h3>Архитектура и инфраструктура</h3>
+                        <p>Создание прочного фундамента для нашего сообщества, где каждая деталь имеет значение</p>
                     </div>
                     
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-spider"></i>
+                            <i class="fas fa-users"></i>
                         </div>
-                        <h3>Паутина ужаса</h3>
-                        <p>Пройдите наш хэллоуинский лабиринт и испытайте свои нервы</p>
+                        <h3>Сообщество и традиции</h3>
+                        <p>Сохранение и развитие уникальных традиций нашего города</p>
                     </div>
                     
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-candy-cane"></i>
+                            <i class="fas fa-balance-scale"></i>
                         </div>
-                        <h3>Сладости и призы</h3>
-                        <p>Собирайте конфеты по всему городу и обменивайте их на награды</p>
+                        <h3>Порядок и стабильность</h3>
+                        <p>Обеспечение безопасности и предсказуемости для всех жителей</p>
                     </div>
                 </div>
             </div>
@@ -846,13 +811,13 @@
         <!-- Events Tab -->
         <section id="events" class="tab-content">
             <div class="container">
-                <h2 class="section-title">Хэллоуинские Мероприятия</h2>
-                <p class="section-subtitle">Приготовьтесь к самой жуткой и веселой ночи в году! Участвуйте в конкурсах и получайте заслуженные награды.</p>
+                <h2 class="section-title">ПРЕДСТОЯЩИЕ МЕРОПРИЯТИЯ</h2>
+                <p class="section-subtitle">События, которые оставят след в истории нашего города</p>
                 
                 <div class="event-hero">
-                    <h2>🎃 HALLOWEEN NIGHT FEST 🎃</h2>
-                    <p>Фестиваль Хэллоуинской Ночи - самое жуткое событие года!</p>
-                    <a href="#" class="btn btn-event">Принять участие в фестивале</a>
+                    <h2>HALLOWEEN NIGHT FEST</h2>
+                    <p>Фестиваль, где реальность встречается с легендой</p>
+                    <a href="#" class="btn btn-event">Принять участие</a>
                 </div>
                 
                 <div class="event-details">
@@ -860,54 +825,54 @@
                         <h3><i class="fas fa-calendar-alt"></i> Дата и время</h3>
                         <p><strong>Дата:</strong> 31 октября 2025 года</p>
                         <p><strong>Время:</strong> 20:00 по МСК</p>
-                        <p><strong>Место:</strong> Эстрада у мэрии (украшена тыквами и паутиной)</p>
+                        <p><strong>Место:</strong> Эстрада у мэрии (особое оформление)</p>
                     </div>
                     
                     <div class="event-card">
                         <h3><i class="fas fa-users"></i> Участники</h3>
                         <p><strong>Губернатор:</strong> RENJ1RO</p>
-                        <p><strong>Ведущий:</strong> Тайный хэллоуинский гость</p>
+                        <p><strong>Организаторы:</strong> Команда мэрии</p>
                         <p><strong>Приглашены:</strong> Все граждане RPM</p>
                     </div>
                     
                     <div class="event-card">
-                        <h3><i class="fas fa-trophy"></i> Главный приз</h3>
-                        <p><strong>Награда:</strong> Деньги и эксклюзивные хэллоуинские предметы</p>
-                        <p><strong>Конфеты:</strong> Собирайте особые хэллоуинские конфеты</p>
-                        <p><strong>Особые условия:</strong> Приходите в хэллоуинских костюмах!</p>
+                        <h3><i class="fas fa-award"></i> Награды</h3>
+                        <p><strong>Главный приз:</strong> Денежное вознаграждение</p>
+                        <p><strong>Дополнительно:</strong> Особые знаки отличия</p>
+                        <p><strong>Условия:</strong> Активное участие во всех активностях</p>
                     </div>
                 </div>
                 
                 <div class="event-agenda">
-                    <h3 style="color: var(--halloween-green); margin-bottom: 1.5rem; text-align: center;">🎭 Активности фестиваля</h3>
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">ПРОГРАММА МЕРОПРИЯТИЯ</h3>
                     
                     <div class="agenda-item">
-                        <p><strong>Конкурс костюмов «Самый страшный образ»</strong></p>
-                        <p>Покажите свой самый жуткий и креативный хэллоуинский наряд. Победителей ждут специальные призы!</p>
+                        <p><strong>Конкурс костюмов «Самый загадочный образ»</strong></p>
+                        <p>Представьте свой уникальный образ, вдохновленный легендами и историями нашего города. Оценивается оригинальность и соответствие теме.</p>
                     </div>
                     
                     <div class="agenda-item">
-                        <p><strong>«Паутина ужаса» — полоса препятствий</strong></p>
-                        <p>Пройдите через наш темный лабиринт, наполненный паутиной и сюрпризами. Только самые смелые дойдут до конца!</p>
+                        <p><strong>«Лабиринт теней» — испытание для смелых</strong></p>
+                        <p>Пройдите специально подготовленный маршрут, где каждый поворот таит неожиданность. Только самые внимательные найдут выход.</p>
                     </div>
                     
                     <div class="agenda-item">
-                        <p><strong>Охота за привидениями</strong></p>
-                        <p>Найдите всех спрятанных «призраков» по городу. Каждый найденный призрак принесет вам конфеты!</p>
+                        <p><strong>Поиск артефактов</strong></p>
+                        <p>Найдите скрытые предметы по всему городу. Каждая находка приближает вас к разгадке главной тайны вечера.</p>
                     </div>
                     
                     <div class="agenda-item">
-                        <p><strong>«Сладость или гадость»</strong></p>
-                        <p>Собирайте особые конфеты у ключевых NPC по всему городу. Обменивайте конфеты на ценные призы!</p>
+                        <p><strong>Встреча с неизвестным</strong></p>
+                        <p>Особые встречи с таинственными персонажами, которые поделятся историями и вручат особые знаки отличия.</p>
                     </div>
                 </div>
                 
                 <div style="text-align: center; margin-top: 2rem;">
-                    <h3 style="color: var(--halloween-green); margin-bottom: 1rem;">Как присоединиться к веселью?</h3>
-                    <p>Просто приходите на эстраду у мэрии в назначенное время! Не забудьте надеть хэллоуинский костюм для участия в конкурсе.</p>
-                    <p>Следите за обновлениями в нашем Discord-сервере для получения дополнительной информации.</p>
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">КАК ПРИНЯТЬ УЧАСТИЕ?</h3>
+                    <p>Прибыть на эстраду у мэрии в указанное время. Рекомендуется подготовить соответствующий мероприятию образ.</p>
+                    <p>Следите за дополнительными объявлениями в игровом чате и на нашем Discord-сервере.</p>
                     <a href="#" class="btn btn-discord nav-link" data-tab="discord" style="margin-top: 1rem;">
-                        <i class="fab fa-discord"></i> Следить за новостями в Discord
+                        <i class="fab fa-discord"></i> Discord для уточнений
                     </a>
                 </div>
             </div>
@@ -916,33 +881,33 @@
         <!-- Discord Tab -->
         <section id="discord" class="tab-content">
             <div class="container">
-                <h2 class="section-title">Наш Discord сервер</h2>
+                <h2 class="section-title">DISCORD СЕРВЕР</h2>
                 
                 <div class="discord-container">
                     <div class="discord-info">
-                        <h3 style="color: var(--discord); margin-bottom: 1.5rem;">Присоединяйтесь к нашему жуткому сообществу!</h3>
-                        <p style="margin-bottom: 1.5rem;">Наш Discord сервер - это место, где собираются все любители Хэллоуина и игроки проекта. Здесь вы можете:</p>
+                        <h3 style="color: var(--primary); margin-bottom: 1.5rem;">ПРИСОЕДИНЯЙТЕСЬ К СООБЩЕСТВУ</h3>
+                        <p style="margin-bottom: 1.5rem;">Наш Discord сервер — это место, где собираются те, кто определяет будущее нашего города. Здесь вы можете:</p>
                         
                         <ul style="list-style-type: none; margin-bottom: 2rem;">
                             <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
-                                <i class="fas fa-check" style="color: var(--halloween-green); position: absolute; left: 0;"></i>
-                                Общаться с губернатором о хэллоуинских планах
+                                <i class="fas fa-check" style="color: var(--primary); position: absolute; left: 0;"></i>
+                                Получать информацию о решениях администрации
                             </li>
                             <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
-                                <i class="fas fa-check" style="color: var(--halloween-green); position: absolute; left: 0;"></i>
-                                Получать актуальные новости о хэллоуинских мероприятиях
+                                <i class="fas fa-check" style="color: var(--primary); position: absolute; left: 0;"></i>
+                                Узнавать о планируемых изменениях в законодательстве
                             </li>
                             <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
-                                <i class="fas fa-check" style="color: var(--halloween-green); position: absolute; left: 0;"></i>
-                                Участвовать в хэллоуинских конкурсах и активностях
+                                <i class="fas fa-check" style="color: var(--primary); position: absolute; left: 0;"></i>
+                                Участвовать в обсуждении важных для города вопросов
                             </li>
                             <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
-                                <i class="fas fa-check" style="color: var(--halloween-green); position: absolute; left: 0;"></i>
-                                Предлагать жуткие идеи для мероприятий
+                                <i class="fas fa-check" style="color: var(--primary); position: absolute; left: 0;"></i>
+                                Предлагать идеи для развития инфраструктуры
                             </li>
                             <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
-                                <i class="fas fa-check" style="color: var(--halloween-green); position: absolute; left: 0;"></i>
-                                Находить команду для хэллоуинских приключений
+                                <i class="fas fa-check" style="color: var(--primary); position: absolute; left: 0;"></i>
+                                Находить единомышленников для совместных проектов
                             </li>
                         </ul>
                         
@@ -955,25 +920,25 @@
                         <div class="discord-header">
                             <i class="fab fa-discord"></i>
                             <h3>Мэрия РПМ</h3>
-                            <p>Хэллоуинский Discord сервер</p>
+                            <p>Официальный Discord сервер</p>
                         </div>
                         <div class="discord-content">
-                            <p>Присоединяйтесь к нашему растущему сообществу призраков и монстров!</p>
+                            <p>Место, где решается будущее города</p>
                             
                             <div class="discord-stats">
                                 <div class="stat">
                                     <div class="stat-number">24/7</div>
-                                    <div class="stat-label">Жуткая активность</div>
+                                    <div class="stat-label">Доступность</div>
                                 </div>
                                 <div class="stat">
-                                    <div class="stat-number">👻</div>
-                                    <div class="stat-label">Призраков онлайн</div>
+                                    <div class="stat-number">✓</div>
+                                    <div class="stat-label">Проверено</div>
                                 </div>
                             </div>
                             
                             <p style="margin-top: 1.5rem; font-size: 0.9rem;">
-                                <i class="fas fa-shield-alt" style="color: var(--halloween-green);"></i>
-                                Защита от злых духов
+                                <i class="fas fa-shield-alt" style="color: var(--primary);"></i>
+                                Гарантированная безопасность
                             </p>
                         </div>
                     </div>
@@ -984,10 +949,10 @@
         <!-- Ideas Tab -->
         <section id="ideas" class="tab-content">
             <div class="container">
-                <h2 class="section-title">Идеи и предложения</h2>
+                <h2 class="section-title">ИДЕИ И ПРЕДЛОЖЕНИЯ</h2>
                 <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-                    Хотите предложить свою жуткую идею для Хэллоуина или улучшить наш фестиваль? Мы открыты для любых предложений! 
-                    Все идеи будут рассмотрены администрацией и могут быть реализованы в наших будущих мероприятиях.
+                    Ваше мнение формирует будущее нашего города. Поделитесь своими идеями и предложениями по развитию инфраструктуры и улучшению жизни в RPM. 
+                    Все поступившие предложения будут тщательно рассмотрены администрацией.
                 </p>
                 
                 <div class="ideas-form">
@@ -1006,7 +971,6 @@
                             <label for="category">Категория предложения</label>
                             <select id="category" name="category" class="form-control" required>
                                 <option value="" disabled selected>Выберите категорию</option>
-                                <option value="halloween">Хэллоуинские мероприятия</option>
                                 <option value="infrastructure">Инфраструктура и строительство</option>
                                 <option value="economy">Экономика и торговля</option>
                                 <option value="events">Мероприятия и события</option>
@@ -1017,7 +981,7 @@
                         
                         <div class="form-group">
                             <label for="suggestion">Ваше предложение</label>
-                            <textarea id="suggestion" name="suggestion" class="form-control" placeholder="Опишите вашу жуткую идею или предложение..." required></textarea>
+                            <textarea id="suggestion" name="suggestion" class="form-control" placeholder="Опишите вашу идею или предложение..." required></textarea>
                         </div>
                         
                         <button type="submit" class="btn-primary">Отправить предложение</button>
@@ -1025,9 +989,9 @@
                 </div>
                 
                 <div style="margin-top: 3rem; text-align: center;">
-                    <h3 style="color: var(--halloween-green); margin-bottom: 1rem;">Контактная информация</h3>
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">КОНТАКТНАЯ ИНФОРМАЦИЯ</h3>
                     <p>Никнейм губернатора в Minecraft: <strong>RENJ1RO</strong></p>
-                    <p>Для связи используйте форму выше или наш <a href="#" class="nav-link" data-tab="discord" style="color: var(--halloween-green);">Discord сервер</a></p>
+                    <p>Для оперативной связи используйте форму выше или наш <a href="#" class="nav-link" data-tab="discord" style="color: var(--primary);">Discord сервер</a></p>
                 </div>
             </div>
         </section>
@@ -1038,14 +1002,14 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h3>Мэрия РПМ</h3>
-                <p>Хэллоуинский портал администрации региона РПМ в Minecraft. Готовим жуткие сюрпризы для вас!</p>
+                <p>Официальный портал администрации региона РПМ в Minecraft. Мы работаем для стабильного будущего нашего города.</p>
                 <a href="https://discord.gg/kZDHdtU6CV" target="_blank" class="btn btn-discord" style="display: inline-block; margin-top: 1rem;">
                     <i class="fab fa-discord"></i> Наш Discord
                 </a>
             </div>
             
             <div class="footer-column">
-                <h3>Полезные ссылки</h3>
+                <h3>Основные разделы</h3>
                 <a href="#" class="nav-link" data-tab="home">Главная</a>
                 <a href="#" class="nav-link" data-tab="events">Мероприятия</a>
                 <a href="#" class="nav-link" data-tab="discord">Дискорд</a>
@@ -1053,15 +1017,15 @@
             </div>
             
             <div class="footer-column">
-                <h3>Контакты в Minecraft</h3>
-                <p><i class="fas fa-ghost"></i> Губернатор: RENJ1RO</p>
-                <p><i class="fas fa-moon"></i> Время мероприятий: 20:00 МСК</p>
-                <p><i class="fas fa-candy-cane"></i> Хэллоуин до: 31 октября</p>
+                <h3>Контакты</h3>
+                <p><i class="fas fa-user"></i> Губернатор: RENJ1RO</p>
+                <p><i class="far fa-clock"></i> Режим работы: 24/7</p>
+                <p><i class="fas fa-map-marker-alt"></i> Локация: Эстрада у мэрии</p>
             </div>
         </div>
         
         <div class="copyright">
-            <p>&copy; 2025 Хэллоуинская Мэрия РПМ в Minecraft. Все права защищены.</p>
+            <p>&copy; 2025 Мэрия РПМ в Minecraft. Все права защищены.</p>
         </div>
     </footer>
 
@@ -1100,7 +1064,7 @@
                     // Formspree handles the actual submission
                     // We'll just show a confirmation
                     setTimeout(() => {
-                        alert('Спасибо! Ваше жуткое предложение отправлено губернатору. Мы рассмотрим его в ближайшее время.');
+                        alert('Спасибо! Ваше предложение отправлено губернатору. Мы рассмотрим его в ближайшее время.');
                         suggestionForm.reset();
                     }, 500);
                 });
@@ -1121,25 +1085,6 @@
                     document.getElementById('events').classList.add('active');
                     
                     // Scroll to events section
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
-            
-            // Event button to Discord tab
-            const eventButton = document.querySelector('.event-hero .btn');
-            if (eventButton) {
-                eventButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all links and tabs
-                    navLinks.forEach(item => item.classList.remove('active'));
-                    tabContents.forEach(item => item.classList.remove('active'));
-                    
-                    // Add active class to Discord link
-                    document.querySelector('[data-tab="discord"]').classList.add('active');
-                    document.getElementById('discord').classList.add('active');
-                    
-                    // Scroll to top
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             }
