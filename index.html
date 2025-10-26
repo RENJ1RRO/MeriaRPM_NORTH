@@ -19,6 +19,7 @@
             --discord: #5865F2;
             --discord-dark: #4752C4;
             --event: #8B0000;
+            --october: #D2691E;
         }
         
         * {
@@ -196,13 +197,28 @@
             animation: glow 3s infinite;
             border-color: var(--primary);
         }
+
+        .btn-october {
+            background: linear-gradient(45deg, var(--october), #8B4513);
+            animation: glow-october 3s infinite;
+            border-color: var(--october);
+        }
         
         @keyframes glow {
             0%, 100% { box-shadow: 0 0 5px rgba(139, 0, 0, 0.5); }
             50% { box-shadow: 0 0 15px rgba(139, 0, 0, 0.7); }
         }
+
+        @keyframes glow-october {
+            0%, 100% { box-shadow: 0 0 5px rgba(210, 105, 30, 0.5); }
+            50% { box-shadow: 0 0 15px rgba(210, 105, 30, 0.7); }
+        }
         
         .btn-event:hover {
+            animation: none;
+        }
+
+        .btn-october:hover {
             animation: none;
         }
         
@@ -435,6 +451,15 @@
             border: 1px solid var(--primary);
             position: relative;
         }
+
+        .october-hero {
+            background: 
+                linear-gradient(rgba(5, 5, 5, 0.9), rgba(10, 10, 10, 0.9)),
+                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid var(--october);
+        }
         
         .event-hero::before {
             content: '';
@@ -447,6 +472,12 @@
                 radial-gradient(circle at 30% 20%, rgba(139, 0, 0, 0.1) 0%, transparent 40%),
                 radial-gradient(circle at 70% 80%, rgba(47, 79, 79, 0.1) 0%, transparent 40%);
         }
+
+        .october-hero::before {
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(210, 105, 30, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 40%);
+        }
         
         .event-hero h2 {
             font-size: 2.5rem;
@@ -455,6 +486,10 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
             position: relative;
             z-index: 2;
+        }
+
+        .october-hero h2 {
+            color: var(--october);
         }
         
         .event-hero p {
@@ -490,6 +525,10 @@
             height: 2px;
             background: linear-gradient(90deg, var(--primary), transparent);
         }
+
+        .october-card::before {
+            background: linear-gradient(90deg, var(--october), transparent);
+        }
         
         .event-card h3 {
             color: var(--primary);
@@ -497,6 +536,10 @@
             display: flex;
             align-items: center;
             gap: 10px;
+        }
+
+        .october-card h3 {
+            color: var(--october);
         }
         
         .event-agenda {
@@ -517,6 +560,10 @@
             right: 0;
             height: 2px;
             background: linear-gradient(90deg, var(--primary), var(--accent-dark));
+        }
+
+        .october-agenda::before {
+            background: linear-gradient(90deg, var(--october), var(--accent-dark));
         }
         
         .agenda-item {
@@ -547,6 +594,10 @@
             position: absolute;
             left: 0;
             color: var(--primary);
+        }
+
+        .october-activities li::before {
+            color: var(--october);
         }
         
         /* Ideas Section */
@@ -731,6 +782,59 @@
             color: var(--primary);
             opacity: 0.7;
         }
+
+        .events-timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .events-timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--october), var(--primary));
+            z-index: 1;
+        }
+
+        .timeline-event {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid var(--accent-dark);
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            margin: 0 1rem;
+        }
+
+        .timeline-event:first-child {
+            margin-left: 0;
+        }
+
+        .timeline-event:last-child {
+            margin-right: 0;
+        }
+
+        .timeline-event h4 {
+            color: var(--october);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-event.halloween h4 {
+            color: var(--primary);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -760,9 +864,9 @@
     <section class="hero">
         <div class="hero-content">
             <div class="decoration">■ ▲ ◆ ■ ▲ ◆</div>
-            <h2>ПОРТАЛ МЭРИИ RPM</h2>
-            <p>Там, где тени рассказывают истории, а решения творят судьбы</p>
-            <a href="#" class="btn btn-event" data-tab="events">Предстоящие события</a>
+            <h2>ОСЕННИЕ ФЕСТИВАЛИ В RPM</h2>
+            <p>OCTOBER FEST 28-30 октября и Halloween Night Fest 30 октября</p>
+            <a href="#" class="btn btn-event" data-tab="events">Узнать о мероприятиях</a>
         </div>
     </section>
 
@@ -779,10 +883,25 @@
                     </div>
                     <div class="governor-info">
                         <h3>Губернатор RPM</h3>
-                        <p>Граждане, в эти осенние сумерки, когда граница между мирами становится тоньше, я обращаюсь к вам. Наш город стоит на пороге событий, которые определят его будущее.</p>
-                        <p>В это время года традиции требуют нашего внимания. Мы подготовили мероприятие, которое позволит каждому прикоснуться к тайне и испытать нечто особенное.</p>
-                        <p>Будьте бдительны, но не бойтесь. Иногда самые темные тени скрывают самые яркие возможности.</p>
+                        <p>Граждане! Хочу проинформировать вас об изменениях в расписании мероприятий. К сожалению, нам пришлось перенести Halloween Night Fest на 30 октября из-за проведения OCTOBER FEST.</p>
+                        <p>OCTOBER FEST пройдет с 28 по 30 октября - это будет грандиозный осенний праздник с традиционными развлечениями и угощениями. А 30 октября мы совместим его с Halloween Night Fest для самого запоминающегося вечера этой осени!</p>
+                        <p>Приготовьтесь к трем дням непрерывного праздника и незабываемым впечатлениям!</p>
                         <p>С уважением, Губернатор RPM</p>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">РАСПИСАНИЕ МЕРОПРИЯТИЙ</h2>
+
+                <div class="events-timeline">
+                    <div class="timeline-event">
+                        <h4>OCTOBER FEST</h4>
+                        <div class="timeline-date">28-30 октября</div>
+                        <p>Осенний праздник</p>
+                    </div>
+                    <div class="timeline-event halloween">
+                        <h4>HALLOWEEN NIGHT</h4>
+                        <div class="timeline-date">30 октября</div>
+                        <p>Вечер ужасов</p>
                     </div>
                 </div>
                 
@@ -819,19 +938,70 @@
         <!-- Events Tab -->
         <section id="events" class="tab-content">
             <div class="container">
-                <h2 class="section-title">ПРЕДСТОЯЩИЕ МЕРОПРИЯТИЯ</h2>
-                <p class="section-subtitle">События, которые оставят след в истории нашего города</p>
+                <h2 class="section-title">ОСЕННИЕ МЕРОПРИЯТИЯ</h2>
+                <p class="section-subtitle">Два грандиозных фестиваля, которые сделают эту осень незабываемой</p>
+
+                <!-- OCTOBER FEST -->
+                <div class="event-hero october-hero">
+                    <h2>OCTOBER FEST</h2>
+                    <p>Традиционный осенний праздник с 28 по 30 октября</p>
+                    <a href="#" class="btn btn-october">Узнать подробности</a>
+                </div>
                 
+                <div class="event-details">
+                    <div class="event-card october-card">
+                        <h3><i class="fas fa-calendar-alt"></i> Дата и время</h3>
+                        <p><strong>Дата:</strong> 28-30 октября 2025 года</p>
+                        <p><strong>Время:</strong> С 18:00 ежедневно</p>
+                        <p><strong>Место:</strong> Эстрада у мэрии и центральная площадь</p>
+                    </div>
+                    
+                    <div class="event-card october-card">
+                        <h3><i class="fas fa-users"></i> Участники</h3>
+                        <p><strong>Губернатор:</strong> RENJ1RO</p>
+                        <p><strong>Организаторы:</strong> Команда мэрии и приглашенные артисты</p>
+                        <p><strong>Приглашены:</strong> Все граждане RPM</p>
+                    </div>
+                    
+                    <div class="event-card october-card">
+                        <h3><i class="fas fa-award"></i> Особенности</h3>
+                        <p><strong>Традиции:</strong> Осенние угощения и напитки</p>
+                        <p><strong>Развлечения:</strong> Музыка, танцы, конкурсы</p>
+                        <p><strong>Атмосфера:</strong> Уютная осенняя праздничная</p>
+                    </div>
+                </div>
+                
+                <div class="event-agenda october-agenda">
+                    <h3 style="color: var(--october); margin-bottom: 1.5rem; text-align: center;">ПРОГРАММА OCTOBER FEST</h3>
+                    
+                    <div class="agenda-item">
+                        <p><strong>День 1 (28 октября) - Открытие фестиваля</strong></p>
+                        <p>Торжественное открытие, представление участников, начало праздничной программы.</p>
+                    </div>
+                    
+                    <div class="agenda-item">
+                        <p><strong>День 2 (29 октября) - Основные мероприятия</strong></p>
+                        <p>Конкурсы, игры, выступления артистов, традиционные осенние развлечения.</p>
+                    </div>
+                    
+                    <div class="agenda-item">
+                        <p><strong>День 3 (30 октября) - Завершение и Halloween Night Fest</strong></p>
+                        <p>Финальные мероприятия OCTOBER FEST и плавный переход к Halloween Night Fest вечером.</p>
+                    </div>
+                </div>
+
+                <!-- Halloween Night Fest -->
                 <div class="event-hero">
                     <h2>HALLOWEEN NIGHT FEST</h2>
-                    <p>Фестиваль, где реальность встречается с легендой</p>
+                    <p>Фестиваль, где реальность встречается с легендой - 30 октября</p>
                     <a href="#" class="btn btn-event">Принять участие</a>
                 </div>
                 
                 <div class="event-details">
                     <div class="event-card">
                         <h3><i class="fas fa-calendar-alt"></i> Дата и время</h3>
-                        <p><strong>Дата:</strong> 26 октября 2025 года</p>
+                        <p><strong>Дата:</strong> 30 октября 2025 года</p>
+                        <p><strong>Время:</strong> 20:00 по МСК</p>
                         <p><strong>Место:</strong> Эстрада у мэрии (особое оформление)</p>
                     </div>
                     
@@ -851,7 +1021,7 @@
                 </div>
                 
                 <div class="event-agenda">
-                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">ПРОГРАММА МЕРОПРИЯТИЯ</h3>
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">ПРОГРАММА HALLOWEEN NIGHT FEST</h3>
                     
                     <div class="agenda-item">
                         <p><strong>Конкурс костюмов «Самый загадочный образ»</strong></p>
@@ -875,8 +1045,8 @@
                 </div>
                 
                 <div style="text-align: center; margin-top: 2rem;">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;">КАК ПРИНЯТЬ УЧАСТИЕ?</h3>
-                    <p>Прибыть на эстраду у мэрии в указанное время. Рекомендуется подготовить соответствующий мероприятию образ.</p>
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">ВАЖНАЯ ИНФОРМАЦИЯ</h3>
+                    <p>Оба мероприятия будут проходить на эстраде у мэрии. 30 октября - особый день, когда OCTOBER FEST плавно перейдет в Halloween Night Fest.</p>
                     <p>Следите за дополнительными объявлениями в игровом чате и на нашем Discord-сервере.</p>
                     <a href="#" class="btn btn-discord nav-link" data-tab="discord" style="margin-top: 1rem;">
                         <i class="fab fa-discord"></i> Discord для уточнений
@@ -898,23 +1068,23 @@
                         <ul style="list-style-type: none; margin-bottom: 2rem;">
                             <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
                                 <i class="fas fa-check" style="color: var(--primary); position: absolute; left: 0;"></i>
-                                Получать информацию о решениях администрации
+                                Получать актуальную информацию о мероприятиях
                             </li>
                             <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
                                 <i class="fas fa-check" style="color: var(--primary); position: absolute; left: 0;"></i>
-                                Узнавать о планируемых изменениях в законодательстве
+                                Узнавать о последних изменениях в расписании
                             </li>
                             <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
                                 <i class="fas fa-check" style="color: var(--primary); position: absolute; left: 0;"></i>
-                                Участвовать в обсуждении важных для города вопросов
+                                Участвовать в обсуждении предстоящих событий
                             </li>
                             <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
                                 <i class="fas fa-check" style="color: var(--primary); position: absolute; left: 0;"></i>
-                                Предлагать идеи для развития инфраструктуры
+                                Предлагать идеи для будущих мероприятий
                             </li>
                             <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
                                 <i class="fas fa-check" style="color: var(--primary); position: absolute; left: 0;"></i>
-                                Находить единомышленников для совместных проектов
+                                Находить команду для участия в активностях
                             </li>
                         </ul>
                         
@@ -939,7 +1109,7 @@
                                 </div>
                                 <div class="stat">
                                     <div class="stat-number">✓</div>
-                                    <div class="stat-label">Проверено</div>
+                                    <div class="stat-label">Актуально</div>
                                 </div>
                             </div>
                             
@@ -1024,9 +1194,9 @@
             </div>
             
             <div class="footer-column">
-                <h3>Контакты</h3>
-                <p><i class="fas fa-user"></i> Губернатор: RENJ1RO</p>
-                <p><i class="far fa-clock"></i> Режим работы: 24/7</p>
+                <h3>Ближайшие события</h3>
+                <p><i class="fas fa-beer"></i> OCTOBER FEST: 28-30 октября</p>
+                <p><i class="fas fa-ghost"></i> Halloween Night: 30 октября</p>
                 <p><i class="fas fa-map-marker-alt"></i> Локация: Эстрада у мэрии</p>
             </div>
         </div>
@@ -1099,4 +1269,3 @@
     </script>
 </body>
 </html>
-
